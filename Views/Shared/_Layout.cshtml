@@ -1,0 +1,233 @@
+﻿@using FrontEnd.Dtos
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FrontEnd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FrontEnd.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/global.css"¨ />
+    @await RenderSectionAsync("Styles", required: false)
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+
+                    <span class="brand-z">Z</span><span class="brand-an">an</span><span class="brand-dash">-</span><span class="brand-ai">AI</span>
+                    <img src="~/img/logo.png" alt="Zan-AI" class="brand-logo" style="height: 24px; width: auto; margin-right: 5px;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link" sp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Historial">History</a>
+                    </div>
+
+                    <div class="d-flex gap-2 ms-4">
+                        <button class="btn btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                        <button class="btn btn-signup" data-bs-toggle="modal" data-bs-target="#registroModal">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- MODAL login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-black">
+
+                <!-- Encabezado con degradado -->
+                <div class="login-head">
+                    <h1 class="fs-3 mb-1">Iniciar Sesión</h1>
+                    <small>Portal Prehispánico</small>
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3"
+                            data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input class="form-control" id="email" placeholder="nombre" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePwd" aria-label="Mostrar/Ocultar">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success w-100 mb-3" id="btnEntrar">Entrar</button>
+
+                        <p class="mt-4 mb-0 text-center">
+                            <span class="text-secondary">¿No tienes cuenta?</span>
+                            <a href="#" class="link-soft text-decoration-none">Regístrate aquí</a>
+                        </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL registrar -->
+    <div class="modal fade" id="registroModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-black">
+
+                <!-- Encabezado con degradado -->
+                <div class="login-head">
+                    <h1 class="fs-3 mb-1">Registrarse</h1>
+                    <small>Portal Prehispánico</small>
+                    <button type="button" class="btn-close btn-close-white position-absolute end-0 top-0 m-3"
+                            data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input class="form-control" id="emailRegistro" placeholder="nombre" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="passwordRegistro" placeholder="••••••••" required>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePwd" aria-label="Mostrar/Ocultar">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success w-100 mb-3" id="btnRegistro">Registrarse</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - FrontEnd - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Login.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        const urlAutenticacion = '@ConfigurationUrl.GetBaseUrl()/loginUsuario';
+         const urlRegistro = '@ConfigurationUrl.GetBaseUrl()/registrarUsuario';
+        const urlHome = '@Url.Action("Index")';
+    </script>
+    <script>
+
+
+        $("#btnRegistro").on("click", async function () {
+            let result = await fetch(urlRegistro , {
+                method:'POST' ,
+                headers:{
+                   'accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({
+                   nombre:$("#emailRegistro").val(),
+                   contrasena:$("#passwordRegistro").val()
+                })
+
+            })
+            let response = await result.json();
+            if(response.isSuccess == false){
+            Swal.fire({
+             icon: "error",
+             title: "Oops...",
+             text: response.message
+             });
+             return;
+            }
+           
+             Swal.fire({
+                icon: "success",
+                title: "Creado",
+                text: "Usuario creado"
+                });
+
+
+           return;
+
+
+        })
+
+         $("#btnEntrar").on("click", async function () {
+             let result = await fetch(urlAutenticacion , {
+                 method:'POST' ,
+                 headers:{
+                    'accept': 'application/json',
+                   'Content-Type': 'application/json'
+                 },
+                 body:JSON.stringify({
+                    nombre:$("#email").val(),
+                    contrasena:$("#password").val()
+                 })
+
+             })
+             let response = await result.json();
+             if(response.isSuccess == false){
+             Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: response.message
+              });
+              return;
+             }
+             if(response.isSuccess == true && response.exists == false){
+                 Swal.fire({
+                  icon: "question",
+                  title: "Oops...",
+                  text: "the user that you are looking for dont existes"
+                  });
+             return;
+             }
+              Swal.fire({
+                 icon: "success",
+                 title: "Logeado",
+                 text: "te has logeado correctamente"
+                 });
+            window.location.href = `${urlHome}?id=${response.id}`;
+
+           
+            return; 
+
+
+         });
+
+    </script>
+</body>
+</html>
